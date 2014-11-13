@@ -8,7 +8,7 @@ public abstract class Poisson extends EtreVivant {
 	protected String m_type;
 	protected Random r;
 	
-	abstract EtreVivant makeBaby();
+
 	abstract void mange();
 	
 	public Poisson(String name, String sex, String race, String type)
@@ -54,6 +54,27 @@ public abstract class Poisson extends EtreVivant {
 	public void setSex(String sex)
 	{
 		m_sex = sex;
+	}
+	
+	EtreVivant makeBaby()
+	{
+		System.out.println("MAKE BABY : " + this.getRace());
+	int sexInt = r.nextInt(2);
+	EtreVivant baby = null;
+	if(this.getType().equals("Carnivore"))
+	{
+		baby = new PoissonCarnivore(this.getName(), "Unknown", this.getRace(), 0);
+	}
+	else if(this.getType().equals("Herbivore"))
+	{
+		baby = new PoissonHerbivore(this.getName(), "Unknown", this.getRace(), 0);
+	}	
+	if (sexInt == 0)
+		 ((Poisson)baby).setSex("M");
+	else if (sexInt == 1)
+		((Poisson)baby).setSex("F");
+		
+	return baby;
 	}
 
 	

@@ -72,8 +72,9 @@ public class Aquarium {
 		if(!m_fishes.isEmpty())
 		{
 			System.out.println(m_fishes.size());
-			for(int i = 0; i < m_fishes.size(); i++)
-			{System.out.println(i);
+			int i = 0;
+			do
+			{
 				if(m_fishes.get(i).isAlive())
 				{
 					//each tour fishes are more hungry so they lose 1 hp
@@ -113,15 +114,12 @@ public class Aquarium {
 					else
 					{
 						int j = r.nextInt(m_fishes.size());
-						System.out.println("j: "+ j);
-						System.out.println(((Poisson)m_fishes.get(j)).getName());
-						if(((Poisson)m_fishes.get(i)).getRace().equals(((Poisson)m_fishes.get(j)).getRace()) && !((Poisson)m_fishes.get(i)).getSex().equals(((Poisson)m_fishes.get(j)).getSex()))
+						//System.out.println("j: "+ j);
+						//System.out.println(((Poisson)m_fishes.get(j)).getName());
+						if(((Poisson)m_fishes.get(i)).getRace().equals(((Poisson)m_fishes.get(j)).getRace()) && !((Poisson)m_fishes.get(i)).getSex().equals(((Poisson)m_fishes.get(j)).getSex()) && m_fishes.get(i).getAge() != 1 && m_fishes.get(j).getAge() != 1)
 						{
 							EtreVivant baby = null;
-							if(((Poisson)m_fishes.get(i)).getRace().equals("Carnivore"))
-								baby = ((PoissonCarnivore)m_fishes.get(i)).makeBaby();
-							if(((Poisson)m_fishes.get(i)).getRace().equals("Herbivore"))
-								baby = ((PoissonHerbivore)m_fishes.get(i)).makeBaby();
+							baby = ((Poisson)m_fishes.get(i)).makeBaby();
 							m_fishes.add(baby);
 							
 						}
@@ -132,7 +130,8 @@ public class Aquarium {
 					m_fishes.remove(i);
 					i--;
 				}
-			}
+				i++;
+			}while(i < m_fishes.size());
 		}
 		if(!m_seaWeeds.isEmpty())
 		{

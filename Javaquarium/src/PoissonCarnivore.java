@@ -13,16 +13,4 @@ public class PoissonCarnivore extends Poisson{
 		this.setHealthPoints(this.getHealthPoints()+5);
 		
 	}
-
-	EtreVivant makeBaby()
-		{
-		int sexInt = r.nextInt(2);
-		EtreVivant baby = new PoissonCarnivore(this.getName(), "Unknown", this.getRace(), 0);;
-		if (sexInt == 0)
-			 ((Poisson)baby).setSex("M");
-		else if (sexInt == 1)
-			((Poisson)baby).setSex("F");
-			
-		return baby;
-	}
 }
